@@ -6,6 +6,6 @@ class OperationDivide extends Operation
 		if(0 == $this->opt2){
 			return "除数不能为0";
 		}
-		return $this->opt1 - $this->opt2;
+		return $this->opt1 / $this->opt2;
 	}
 }
