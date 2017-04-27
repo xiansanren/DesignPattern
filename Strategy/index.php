@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>商场收银服务</title>
-    <link rel="stylesheet" href="">
-</head>
-<body>
-<form action="./" method="post" accept-charset="utf-8">
-    单价：<input type="number" name="unitPrice" value="" placeholder=""><input type="submit" name="" value="添加"><br />
-    数量：<input type="number" name="number" value="" placeholder="">
-    <input type="reset" name="" value="重置">
+<?php
 
-</form>
-</body>
-</html>
+error_reporting(E_ALL);
+$total = $_GET['total'];
+$type = $_GET['type'];
+$cash = null;
+switch ($type){
+    case "normal":
+        $cash = new CaseNormal();
+        break;
+    case "return":
+        $cash = new CashReturn(300, 100);
+        break;
+    case "discount":
+        $cash = new Discount(0.8);
+        break;
+    default:
+        break;
+}
+if($cash){
+    echo $cash->acceptCase($total);
+}
